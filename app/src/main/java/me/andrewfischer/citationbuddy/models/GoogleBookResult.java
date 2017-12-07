@@ -84,8 +84,12 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
         dest.writeString(bookInfo.getPublishedDate());
         dest.writeString(getThumbnailURL());
         if (bookInfo.getAuthors() != null && bookInfo.authors.size() > 0) {
-            dest.writeString(bookInfo.getAuthors().get(0)); // TODO: don't be lazy, do all authors
+            dest.writeInt(bookInfo.getAuthors().size());
+            for (String author : bookInfo.getAuthors()) {
+                dest.writeString(author);
+            }
         } else {
+            dest.writeInt(1);
             dest.writeString("");
         }
     }
@@ -96,7 +100,10 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
         bookInfo.setPublisher(in.readString());
         setPubDate(in.readString());
         bookInfo.setThumbnailURL(in.readString());
-        bookInfo.setAuthors(new ArrayList<String>(Arrays.asList(new String[]{in.readString()})));
+        int numAuthors = in.readInt();
+        for (int i = 0; i < numAuthors; i++) {
+            bookInfo.addAuthor(in.readString());
+        }
     }
 
 
@@ -182,6 +189,12 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
 
         public List<String> getAuthors() {
             return authors;
+        }
+        public void addAuthor(String author) {
+            if (bookInfo.authors == null) {
+                bookInfo.authors = new ArrayList<String>();
+            }
+            bookInfo.authors.add(author);
         }
         public void setAuthors(List<String> authors) {
             bookInfo.authors = authors;

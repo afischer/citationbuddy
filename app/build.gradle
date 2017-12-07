@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 android {
     compileSdkVersion 25
     defaultConfig {
@@ -31,6 +35,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
+
+    compile 'com.google.android.gms:play-services:7.8.0'
+
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -40,7 +47,8 @@ dependencies {
     compile 'com.github.arimorty:floatingsearchview:2.1.1'
 
 
-    compile 'com.google.android.gms:play-services:7.8.0'
+    compile 'com.github.steveash:HumanNameParser.java:v0.2'
+
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }

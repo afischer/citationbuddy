@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.tupilabs.human_name_parser.HumanNameParser;
+import com.tupilabs.human_name_parser.ParsedName;
+import com.tupilabs.human_name_parser.SegmentedName;
 
 import java.util.ArrayList;
 
@@ -51,9 +55,13 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         Log.d("SearchResultAdapter", "Got imageItem " + book.toString());
 
         final Context holderContext = holder.itemView.getContext();
-        holder.titleText.setText(book.getTitle());
+        holder.titleText.setText(Html.fromHtml(book.getTitle())); // Use HTML for UTF-8
         if (book.getAuthors() != null && book.getAuthors().size() > 0) {
-            holder.authorText.setText(book.getAuthors().get(0));
+            String mainAuthor = book.getAuthors().get(0);
+            HumanNameParser parser = new HumanNameParser();
+            ParsedName parsedName = parser.parse(mainAuthor);
+            SegmentedName name = parsedName.toSegmented();
+            holder.authorText.setText(name.getFirst().substring(0, 1) + ". " + name.getLast());
         }
         holder.publisherText.setText(book.getPublisher());
         holder.dateText.setText(book.getPubDate());
