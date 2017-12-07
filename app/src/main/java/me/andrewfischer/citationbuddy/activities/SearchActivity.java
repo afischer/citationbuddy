@@ -1,32 +1,19 @@
 package me.andrewfischer.citationbuddy.activities;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
@@ -90,21 +77,6 @@ public class SearchActivity extends AppCompatActivity {
                 if (menuID.equals("me.andrewfischer.citationbuddy:id/button_scan")) {
                     Log.d("SearchActionButton", "Barcode button pressed");
                     initializeBarcodeScanner();
-
-
-                    // add a button
-//                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            // send data from the AlertDialog to the Activity
-//                            EditText editText = customLayout.findViewById(R.id.editText);
-//                            sendDialogDataToActivity(editText.getText().toString());
-//                        }
-//                    });
-
-                    // create and show the alert dialog
-
-//                    cameraView.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -195,31 +167,16 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-//        searchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if (actionId == EditorInfo.IME_ACTION_SEARCH
-//                        || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-//                    performSearch(v.getText().toString());
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
 
         searchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
             @Override
             public void onFocus() {
-
-                //show suggestions when search bar gains focus (typically history suggestions)
 //                searchView.swapSuggestions(DataHelper.getHistory(getActivity(), 3));
-
                 Log.d(TAG, "onFocus()");
             }
 
             @Override
             public void onFocusCleared() {
-
                 //set the title of the bar so that when focus is returned a new query begins
                 searchView.setSearchText(mLastSearch);
 
