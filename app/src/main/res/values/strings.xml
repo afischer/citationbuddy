@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Citation Buddy</string>
+
+    <!-- Placeholder Text-->
+    <string name="placeholder_title">Book Title</string>
+    <string name="placeholder_author">John Doe</string>
+    <string name="placeholder_publisher">Penn Press</string>
+    <string name="placeholder_pubdate">2017-06-27</string>
+
+
+    <!-- Hints -->
+    <string name="hint_title">Source Title</string>
+    <string name="hint_contributors">Contributors</string>
+    <string name="hint_author_fname">First Name</string>
+    <string name="hint_author_mi">M.I.</string>
+    <string name="hint_author_lname">Last Name</string>
+    <string name="hint_author_suffix">Suffix</string>
+    <string name="hint_volume_num">Volume</string>
+    <string name="hint_volume_count">Of Vol.</string>
+    <string name="hint_edition_num">Edition</string>
+    <string name="hint_series_name">Series</string>
+    <string name="hint_publisher_name">Publisher</string>
+    <string name="hint_pub_date">Publication Date</string>
+
+    <!-- Permissons -->
+    <string name="permissions_granted">Camera permissions granted</string>
+    <string name="permissions_denied">Camera required for barcode scanning</string>
+    <string name="search_title">Search</string>
+    <string name="search_scan_title">Scan a barcode</string>
+    <string name="confirm_citation">Confirm</string>
+    <string name="cancel_citation">Cancel</string>
+    <string name="citetype_MLA">MLA</string>
+    <string name="citetype_APA">APA</string>
+    <string name="citetype_CMS">Chicago</string>
+
+</resources>

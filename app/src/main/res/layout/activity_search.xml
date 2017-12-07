@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="me.andrewfischer.citationbuddy.activities.SearchActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_results_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="68dp"
+            android:clipToPadding="false"/>
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
+            app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
+            app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
+            app:floatingSearch_searchHint="Search..."
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_menu="@menu/menu_searchbar"/>
+
+    </RelativeLayout>
+
+
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+
+        <!--<EditText-->
+            <!--android:id="@+id/text_search"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="55dp"-->
+            <!--android:imeOptions="actionSearch"-->
+            <!--android:inputType="textCapWords"-->
+            <!--android:layout_weight="1"-->
+            <!--android:ellipsize="end"-->
+            <!--android:maxLines="1"-->
+            <!--android:drawableEnd="@drawable/ic_barcode_scan"/>-->
+
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/button_scan"-->
+            <!--android:padding="16dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:minHeight="@dimen/button_min_height"-->
+            <!--android:minWidth="@dimen/button_min_width"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_barcode_scan"/>-->
+    <!--</LinearLayout>-->
+
+
+    <!--<SurfaceView-->
+        <!--android:id="@+id/barcode_camera_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginTop="70dp"-->
+        <!--android:visibility="invisible" />-->
+</android.support.design.widget.CoordinatorLayout>
