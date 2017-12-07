@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginTop="68dp"
+            android:paddingTop="68dp"
             android:clipToPadding="false"/>
 
         <com.arlib.floatingsearchview.FloatingSearchView
@@ -35,43 +35,4 @@
             app:floatingSearch_menu="@menu/menu_searchbar"/>
 
     </RelativeLayout>
-
-
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-
-
-        <!--<EditText-->
-            <!--android:id="@+id/text_search"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="55dp"-->
-            <!--android:imeOptions="actionSearch"-->
-            <!--android:inputType="textCapWords"-->
-            <!--android:layout_weight="1"-->
-            <!--android:ellipsize="end"-->
-            <!--android:maxLines="1"-->
-            <!--android:drawableEnd="@drawable/ic_barcode_scan"/>-->
-
-
-        <!--<ImageButton-->
-            <!--android:id="@+id/button_scan"-->
-            <!--android:padding="16dp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:minHeight="@dimen/button_min_height"-->
-            <!--android:minWidth="@dimen/button_min_width"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:src="@drawable/ic_barcode_scan"/>-->
-    <!--</LinearLayout>-->
-
-
-    <!--<SurfaceView-->
-        <!--android:id="@+id/barcode_camera_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_marginTop="70dp"-->
-        <!--android:visibility="invisible" />-->
 </android.support.design.widget.CoordinatorLayout>
