@@ -4,6 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
+import com.tupilabs.human_name_parser.HumanNameParser;
+import com.tupilabs.human_name_parser.ParsedName;
+import com.tupilabs.human_name_parser.SegmentedName;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.andrewfischer.citationbuddy.R;
@@ -56,6 +60,12 @@ public class DetailActivity extends AppCompatActivity {
         title.setText(bookResult.getTitle());
         publisher.setText(bookResult.getPublisher());
         pubDate.setText(bookResult.getPubDate());
-
+        HumanNameParser parser = new HumanNameParser();
+        ParsedName parsedName = parser.parse(bookResult.getAuthors().get(0));
+        SegmentedName name = parsedName.toSegmented();
+        firstName.setText(name.getFirst());
+        middleInitial.setText(name.getMiddle());
+        lastName.setText(name.getLast());
+        suffix.setText(name.getSuffix());
     }
 }
