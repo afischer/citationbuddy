@@ -56,6 +56,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
         final Context holderContext = holder.itemView.getContext();
         holder.titleText.setText(Html.fromHtml(book.getTitle())); // Use HTML for UTF-8
+        // Get authors
         if (book.getAuthors() != null && book.getAuthors().size() > 0) {
             String mainAuthor = book.getAuthors().get(0);
             HumanNameParser parser = new HumanNameParser();
