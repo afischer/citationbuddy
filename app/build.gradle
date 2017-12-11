@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 repositories {
+    mavenCentral()
     maven { url 'https://jitpack.io' }
 }
 
@@ -45,8 +46,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
 
     compile 'com.github.arimorty:floatingsearchview:2.1.1'
-
-
     compile 'com.github.steveash:HumanNameParser.java:v0.2'
 
     testCompile 'junit:junit:4.12'

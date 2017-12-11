@@ -75,6 +75,7 @@ public class SearchActivity extends AppCompatActivity {
                 String menuID = getResources().getResourceName(item.getItemId());
 
                 if (menuID.equals("me.andrewfischer.citationbuddy:id/button_scan")) {
+                    searchView.setSearchFocused(true);
                     Log.d("SearchActionButton", "Barcode button pressed");
                     initializeBarcodeScanner();
                 }
@@ -90,7 +91,7 @@ public class SearchActivity extends AppCompatActivity {
                     searchView.clearSuggestions();
                 } else if (oldQuery.equals(newQuery)) {
                     searchView.clearSuggestions();
-                } else {
+                } else if (newQuery.length() > 2) {
                     Log.d("QueryCHange", "Performing search with query " + newQuery);
                     Log.d(TAG, "OLD: " + oldQuery + " NEW: " + newQuery);
 
@@ -145,6 +146,7 @@ public class SearchActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<GoogleBooksService.GetResponse> call, Throwable t) {
+                        searchView.hideProgress();
                         String url = call.request().url().toString();
                         Log.e(TAG, "Error requesting books from " + url, t);
                     }
@@ -178,7 +180,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onFocusCleared() {
                 //set the title of the bar so that when focus is returned a new query begins
-                searchView.setSearchText(mLastSearch);
+//                searchView.setSearchText(mLastSearch);
 
                 //you can also set setSearchText(...) to make keep the query there when not focused and when focus returns
                 //mSearchView.setSearchText(searchSuggestion.getBody());
@@ -271,7 +273,6 @@ public class SearchActivity extends AppCompatActivity {
                             String barcodeText = barcodes.valueAt(barcodes.size() - 1).displayValue;
                             searchView.setSearchText(barcodeText);
                             dialog.hide();
-//                            performSearch(barcodeText);
                         }
                     });
                 }

@@ -37,6 +37,7 @@ import retrofit2.http.Query;
 public class GoogleBooksService {
     private static Service service;
 
+
     public interface Service {
         @GET("volumes")
         Call<GetResponse> getBook(@Query("q") String query);
@@ -44,8 +45,7 @@ public class GoogleBooksService {
 
     public class GetResponse {
         @SerializedName("items")
-        public
-        List<GoogleBookResult> books;
+        public List<GoogleBookResult> books;
     }
 
     // Pulls out list of results

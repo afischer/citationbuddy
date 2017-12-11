@@ -7,16 +7,19 @@ import android.util.Log;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.tupilabs.human_name_parser.HumanNameParser;
+import com.tupilabs.human_name_parser.ParsedName;
+import com.tupilabs.human_name_parser.SegmentedName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 /**
  * Created by afischer on 11/27/17.
  */
+
 
 public class GoogleBookResult implements Parcelable, SearchSuggestion {
 
@@ -122,6 +125,25 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
     @Override
     public String getBody() {
         return getTitle();
+    }
+
+    public String getMLACitation() {
+        String citation = "";
+        for (String author : getAuthors()) {
+            HumanNameParser parser = new HumanNameParser();
+            ParsedName parsedName = parser.parse(author);
+            SegmentedName name = parsedName.toSegmented();
+            citation += name.getLast() + ", ";
+            citation += name.getFirst();
+            if (name.getMiddle() != null) {
+                citation += " " + name.getMiddle().substring(0, 1) + ". ";
+            } else {
+                citation += ". ";
+            }
+        }
+        citation += "<i>" + getTitle() + "</i>. ";
+        citation += getPublisher() + ", " + getPubDate() + ". Print.";
+        return citation;
     }
 
     class BookInfo {
