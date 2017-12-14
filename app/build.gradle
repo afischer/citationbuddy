@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
+    jcenter()
 }
 
 android {
@@ -10,7 +11,7 @@ android {
     defaultConfig {
         applicationId "me.andrewfischer.citationbuddy"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,6 +31,7 @@ dependencies {
     })
 
 
+
     compile 'com.android.support:cardview-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.0.+'
 
@@ -39,9 +41,9 @@ dependencies {
 
     compile 'com.google.android.gms:play-services:7.8.0'
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.google.code.gson:gson:2.8.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jakewharton:butterknife:8.5.1'
 

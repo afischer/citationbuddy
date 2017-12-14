@@ -3,6 +3,8 @@ package me.andrewfischer.citationbuddy.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -12,12 +14,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.andrewfischer.citationbuddy.R;
 import me.andrewfischer.citationbuddy.activities.SearchActivity;
+import me.andrewfischer.citationbuddy.models.GoogleBookResult;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     @BindView(R.id.button_add)
     FloatingActionButton addBtn;
 
@@ -28,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         requestPermissions();
+
+        SQLiteDatabase db = openOrCreateDatabase("citationdb",MODE_PRIVATE,null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS Books(citation VARCHAR);");
+        Cursor resultSet = db.rawQuery("Select * from Books",null);
+        for (int i = 0; i < resultSet.getCount(); i++) {
+            resultSet.moveToNext();
+            Log.d(TAG, resultSet.getString(0));
+        }
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package me.andrewfischer.citationbuddy.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -170,12 +171,19 @@ public class DetailActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SQLiteDatabase db = openOrCreateDatabase("citationdb",MODE_PRIVATE,null);
+                db.execSQL("CREATE TABLE IF NOT EXISTS Books(citation VARCHAR);");
+
+
                 AlertDialog dialog = new AlertDialog.Builder(context)
                         .setTitle("MLA Citation" )
                         .create();
 
                 TextView view = new TextView( dialog.getContext() );
-                view.setText( Html.fromHtml(bookResult.getMLACitation()) );
+                String citeString = bookResult.getMLACitation();
+                view.setText( Html.fromHtml(citeString) );
+                db.execSQL("INSERT INTO Books VALUES('" + citeString + "');");
+
                 view.setPadding( 18, 18, 18, 18 );
                 view.setTextSize(16);
                 dialog.setView( view );

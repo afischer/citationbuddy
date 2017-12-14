@@ -5,8 +5,10 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 import com.tupilabs.human_name_parser.HumanNameParser;
 import com.tupilabs.human_name_parser.ParsedName;
 import com.tupilabs.human_name_parser.SegmentedName;
@@ -16,10 +18,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 /**
  * Created by afischer on 11/27/17.
  */
-
 
 public class GoogleBookResult implements Parcelable, SearchSuggestion {
 
@@ -27,21 +29,23 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
     @Expose
     private String kind;
 
-    @SerializedName("id")
+    @SerializedName("book_id")
     @Expose
-    private String id;
+//    @Column(name = "book_id")
+    private String book_id;
 
     @SerializedName("volumeInfo")
     @Expose
-    private BookInfo bookInfo;
+//    @Column(name = "book_info")
+    private  BookInfo bookInfo;
 
     public String getKind() {
         return kind;
     }
 
-    public String getId() {
-        return id;
-    }
+//    public String getId() {
+//        return book_id;
+//    }
 
     public String getTitle() {
         return bookInfo.getTitle();
@@ -72,7 +76,7 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
 
     @Override
     public String toString() {
-        return "<" + bookInfo.getPrintType() + " " + id  +" (" + bookInfo.title + ")>";
+        return "<" + bookInfo.getPrintType() + " " + book_id  +" (" + bookInfo.title + ")>";
     }
 
     @Override
@@ -95,6 +99,9 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
             dest.writeInt(1);
             dest.writeString("");
         }
+    }
+
+    public GoogleBookResult() {
     }
 
     protected GoogleBookResult(Parcel in) {
@@ -147,7 +154,6 @@ public class GoogleBookResult implements Parcelable, SearchSuggestion {
     }
 
     class BookInfo {
-
         @SerializedName("title")
         @Expose
         private String title;
