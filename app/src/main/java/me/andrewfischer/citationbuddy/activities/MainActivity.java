@@ -10,10 +10,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,12 +24,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.andrewfischer.citationbuddy.R;
 import me.andrewfischer.citationbuddy.activities.SearchActivity;
+import me.andrewfischer.citationbuddy.adapters.CitationListAdapter;
 import me.andrewfischer.citationbuddy.models.GoogleBookResult;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    ArrayList<String> citations = new ArrayList<>();
+
     @BindView(R.id.button_add)
     FloatingActionButton addBtn;
+
+    @BindView(R.id.citation_list)
+    RecyclerView citationListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
         requestPermissions();
 
+        RecyclerView.Adapter adapter = new CitationListAdapter(citations);
+        citationListView.setAdapter(adapter);
+        citationListView.setLayoutManager(new LinearLayoutManager(citationListView.getContext()));
+
         SQLiteDatabase db = openOrCreateDatabase("citationdb",MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Books(citation VARCHAR);");
+
         Cursor resultSet = db.rawQuery("Select * from Books",null);
         for (int i = 0; i < resultSet.getCount(); i++) {
             resultSet.moveToNext();
+            citations.add(resultSet.getString(0));
+            adapter.notifyDataSetChanged();
             Log.d(TAG, resultSet.getString(0));
         }
 

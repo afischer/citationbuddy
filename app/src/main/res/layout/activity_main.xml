@@ -3,12 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/cardViewBackground"
     android:layout_height="match_parent"
     tools:context="me.andrewfischer.citationbuddy.activities.MainActivity">
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/citation_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingTop="55dp"
+        android:clipToPadding="false"/>
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:tabTextColor="@color/cardview_light_background"
+        app:tabSelectedTextColor="@color/colorAccentLight"
         style="@style/Widget.AppCompat.ActionBar.TabBar">
 
         <android.support.design.widget.TabItem
@@ -23,19 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/citetype_CMS"/>
-
     </android.support.design.widget.TabLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="60dp"
-        android:paddingLeft="8dp"
-        android:text="Eventually some citations will go here!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/button_add"
